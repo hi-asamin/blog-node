@@ -1,0 +1,32 @@
+version: '3.5'
+services:
+  web-api:
+    build:
+      context: web-api
+    container_name: api-server
+    ports:
+      - "3000:3000"
+    environment:
+      TZ: "Asia/Tokyo"
+    volumes:
+      - ./web-api:/home/app
+    links:
+      - rdb
+    command: [sh, -c, npm install && start]
+
+  rdb:
+    build: rdb
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    volumes:
+      - ./rdb/mysql-data:/var/lib/mysql
+      - ./rdb/initdb.d:/docker-entrypoint-initdb.d
+      - ./rdb/conf.d:/etc/mysql/conf.d
+      - ./rdb/log:/var/log/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: blog_app_db
+      MYSQL_USER: docker
+      MYSQL_PASSWORD: docker
+      TZ: 'Asia/Tokyo'
+    ports:
+        - "3306:3306"

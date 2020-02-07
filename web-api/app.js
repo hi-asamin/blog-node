@@ -7,4 +7,7 @@ const articleRouter = require('./routes/article');
 
 app.use(appConf.uri.article, articleRouter);
 
-module.exports = app;
+//module.exports = app;
+
+app.listen(3000, '0.0.0.0');
+console.log('running')

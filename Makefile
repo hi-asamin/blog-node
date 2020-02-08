@@ -6,3 +6,6 @@ up:
 
 down:
 	docker-compose down
+
+up-build:
+	docker-compose up -d --build

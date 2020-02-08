@@ -1,5 +1,6 @@
 {
-  "uri": [
+  "uri": {
+    "user": "/blog-app/v1/user",
     "article": "/blog-app/v1/article"
-  ]
+  }
 }

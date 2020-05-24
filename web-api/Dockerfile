@@ -1,12 +1,11 @@
 FROM node:latest
 
-WORKDIR /home/app
+ENV APP_ROOT /app/
 
-COPY package.json .
+WORKDIR $APP_ROOT
+
+COPY package.json $APP_ROOT
 
 RUN npm install
 
-COPY . .
-
-EXPOSE 3000
-CMD [ "node", "app.js" ]
+COPY . $APP_ROOT

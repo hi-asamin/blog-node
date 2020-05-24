@@ -4,28 +4,30 @@ services:
     build:
       context: web-api
     container_name: api-server
+    command: npm run dev
     ports:
       - "3000:3000"
     environment:
       TZ: "Asia/Tokyo"
+      NODE_ENV: development
     volumes:
-      - ./web-api:/home/app
-    links:
-      - rdb
+      - ./web-api:/app
+    # links:
+    #   - rdb
 
-  rdb:
-    build: rdb
-    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
-    volumes:
-      - ./rdb/mysql-data:/var/lib/mysql
-      - ./rdb/initdb.d:/docker-entrypoint-initdb.d
-      - ./rdb/conf.d:/etc/mysql/conf.d
-      - ./rdb/log:/var/log/mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: blog_app_db
-      MYSQL_USER: apluser
-      MYSQL_PASSWORD: apluser
-      TZ: 'Asia/Tokyo'
-    ports:
-        - "3306:3306"
+  # rdb:
+  #   build: rdb
+  #   command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+  #   volumes:
+  #     - ./rdb/mysql-data:/var/lib/mysql
+  #     - ./rdb/initdb.d:/docker-entrypoint-initdb.d
+  #     - ./rdb/conf.d:/etc/mysql/conf.d
+  #     - ./rdb/log:/var/log/mysql
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: root
+  #     MYSQL_DATABASE: blog_app_db
+  #     MYSQL_USER: apluser
+  #     MYSQL_PASSWORD: apluser
+  #     TZ: 'Asia/Tokyo'
+  #   ports:
+  #       - "3306:3306"

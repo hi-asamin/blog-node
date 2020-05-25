@@ -17,7 +17,6 @@
   },
   "lint-staged": {
     "*.ts": [
-      "tsc --noEmit",
       "npm run lint",
       "git add"
     ]

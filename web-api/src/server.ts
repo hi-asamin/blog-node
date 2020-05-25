@@ -1,13 +1,12 @@
-import * as express from 'express'
-import { Express } from 'express'
-import * as cors from 'cors'
+import express from 'express'
+import cors from 'cors'
 import { json, urlencoded } from 'body-parser'
 import * as routes from './router/index'
 
 const PORT: number = 3000
 
 export class Server {
-  private app: Express
+  private app: express.Express
 
   constructor() {
     this.app = express()
